@@ -268,37 +268,6 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 </script>
 
 <script is:inline>
-  document.getElementById('copy-button').addEventListener('click', function() {
-    const textToCopy = this.textContent.trim();
-    navigator.clipboard.writeText(textToCopy).then(() => {
-        const notification = document.getElementById('copy-notification');
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 800);
-    }).catch(err => {
-        console.error('Ошибка копирования текста: ', err);
-    });
-});
-</script>
-
-<script is:inline>
-document.getElementById('copy-buttons').addEventListener('click', function() {
-  const textToCopy = this.textContent.trim();
-  navigator.clipboard.writeText(textToCopy).then(() => {
-      const notification = document.getElementById('copy-notifications');
-      notification.style.display = 'block';
-      setTimeout(() => {
-          notification.style.display = 'none';
-      }, 800);
-  }).catch(err => {
-      console.error('Ошибка копирования текста: ', err);
-  });
-});
-</script>
-
-
-<script is:inline>
 
 function fetchServerStatus() {
     fetch('https://api.mcstatus.io/v2/status/java/mc.thefoxxstuff.net')
