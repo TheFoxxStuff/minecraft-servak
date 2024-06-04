@@ -1,21 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import { PROJECTS } from "@consts";
-
-const projects = (await getCollection("projects"))
-  .filter((project) => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<Layout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
-  <Container>
-    <div class="space-y-10">
-      <!-- <div class="animate font-semibold text-black dark:text-white">
-        <span id="motd">Загрузка...</span>
-      </div> -->
-      <ul class="animate not-prose flex flex-col gap-4">
+      <ul class="animate not-prose flex flex-col gap-4 sli">
 
         <div class="animate font-semibold text-black dark:text-white">
             <span id="motd">Загрузка...</span>
@@ -127,9 +116,6 @@ document.getElementById('copy-buttons').addEventListener('click', function() {
   </script>
       </ul>
     </div>
-  </Container>
-</Layout>
-
 
 <style>
   .copy-notification {
@@ -174,5 +160,8 @@ document.getElementById('copy-buttons').addEventListener('click', function() {
   }
   .right {
     float: right;
+  }
+  .sli {
+    margin-bottom: 60px;
   }
 </style>

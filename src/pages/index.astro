@@ -6,6 +6,8 @@ import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import IpAdress from "@components/ip-adress.astro";
+
 
 const blog = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
@@ -22,11 +24,15 @@ const projects: CollectionEntry<"projects">[] = (
 
 <Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <h1 class="animate font-semibold text-black dark:text-white">
+
+    <IpAdress></IpAdress>
+
+
+    <!-- <h1 class="animate font-semibold text-black dark:text-white">
       Introducing Astro Micro 🔬
-    </h1>
+    </h1> -->
     <div class="space-y-16">
-      <section>
+      <!-- <section>
         <article class="space-y-4">
           <span class="animate">
             <p>
@@ -63,7 +69,7 @@ const projects: CollectionEntry<"projects">[] = (
             </p>
           </span>
         </article>
-      </section>
+      </section> -->
 
       <!-- <section class="animate space-y-6">
         <div class="flex flex-wrap items-center justify-between gap-y-2">
@@ -81,7 +87,7 @@ const projects: CollectionEntry<"projects">[] = (
         </ul>
       </section> -->
 
-      <section class="animate space-y-6">
+      <!-- <section class="animate space-y-6">
         <div class="flex flex-wrap items-center justify-between gap-y-2">
           <h2 class="font-semibold text-black dark:text-white">
             Recent projects
@@ -97,13 +103,13 @@ const projects: CollectionEntry<"projects">[] = (
             ))
           }
         </ul>
-      </section>
+      </section> -->
 
       <section class="animate space-y-4">
         <h2 class="font-semibold text-black dark:text-white">Го! С нами!</h2>
         <article>
           <p>
-            Приглашаем на наш Discord сервак!
+            На наш Discord сервер!
           </p>
         </article>
         <ul class="not-prose flex flex-wrap gap-2">
