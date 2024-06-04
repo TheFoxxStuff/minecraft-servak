@@ -266,3 +266,72 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
   document.addEventListener("astro:after-swap", () => init());
   preloadTheme();
 </script>
+
+<script is:inline>
+  document.getElementById('copy-button').addEventListener('click', function() {
+    const textToCopy = this.textContent.trim();
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const notification = document.getElementById('copy-notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 800);
+    }).catch(err => {
+        console.error('Ошибка копирования текста: ', err);
+    });
+});
+</script>
+
+<script is:inline>
+document.getElementById('copy-buttons').addEventListener('click', function() {
+  const textToCopy = this.textContent.trim();
+  navigator.clipboard.writeText(textToCopy).then(() => {
+      const notification = document.getElementById('copy-notifications');
+      notification.style.display = 'block';
+      setTimeout(() => {
+          notification.style.display = 'none';
+      }, 800);
+  }).catch(err => {
+      console.error('Ошибка копирования текста: ', err);
+  });
+});
+</script>
+
+
+<script is:inline>
+
+function fetchServerStatus() {
+    fetch('https://api.mcstatus.io/v2/status/java/mc.thefoxxstuff.net')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('online').textContent = data.online ? 'Да' : 'Нет';
+            document.getElementById('version').textContent = data.version.name_raw;
+            document.getElementById('host').textContent = data.host;
+            document.getElementById('ip_address').textContent = data.ip_address;
+            document.getElementById('srv_record').textContent = `${data.srv_record.port}`;
+            document.getElementById('motd').textContent = data.motd.clean;
+            document.getElementById('players').textContent = `${data.players.online} / ${data.players.max}`;
+            if (data.icon) {
+                const serverIcon = document.getElementById('server_icon');
+                serverIcon.src = data.icon;
+                serverIcon.hidden = false;
+            }
+            const playersList = document.getElementById('players-list');
+            playersList.innerHTML = ''; 
+            if (data.players.list.length > 0) {
+                data.players.list.forEach(player => {
+                    const playerItem = document.createElement('div');
+                    playerItem.textContent = player.name_clean; 
+                    playersList.appendChild(playerItem);
+                });
+            } else {
+                playersList.innerHTML = '<li>Нет игроков онлайн</li>';
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при получении статуса сервера:', error);
+        });
+}
+fetchServerStatus();
+
+</script>

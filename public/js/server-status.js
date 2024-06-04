@@ -18,7 +18,7 @@ function fetchServerStatus() {
             playersList.innerHTML = ''; 
             if (data.players.list.length > 0) {
                 data.players.list.forEach(player => {
-                    const playerItem = document.createElement('li');
+                    const playerItem = document.createElement('div');
                     playerItem.textContent = player.name_clean; 
                     playersList.appendChild(playerItem);
                 });
